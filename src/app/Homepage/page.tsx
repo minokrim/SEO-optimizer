@@ -19,6 +19,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { features } from "@/types";
 import ft from "@/app/Homepage/features.json";
 import Footer from "../components/footer";
+import Nav from "../components/nav";
 import {
   Carousel,
   CarouselContent,
@@ -37,6 +38,7 @@ export default function HomePage() {
   };
   return (
     <div className="h-full bg-black text-white pb-5 flex flex-col items-center justify-center">
+      <Nav/>
       <section
         style={{
           backgroundImage: "url('/pattern.png')",
@@ -68,12 +70,12 @@ export default function HomePage() {
                 technology meets user-friendly SEO tools.
               </h4>
 
-              <div className="flex flex-col md:flex-row justify-between w-full md:w-[70%] px-1 py-0.5 rounded-2xl border-[0.001em] border-none md:border-solid border-gray-500 font-sans items-center mt-5 gap-2">
+              {/* <div className="flex flex-col md:flex-row justify-between w-full md:w-[70%] px-1 py-0.5 rounded-2xl border-[0.001em] border-none md:border-solid border-gray-500 font-sans items-center mt-5 gap-2">
                 <input type="text" name="emailInput" placeholder="Your email" className="border-1 border-solid border-gray-500 md:border-none w-full p-2 rounded-xl"/>
                 <p className="bg-white p-3 rounded-xl text-black md:w-[40%] items-center justify-center w-full">
                   Join Waitlist
                 </p>
-              </div>
+              </div> */}
             </section>
 
             <section className="relative z-5 hidden md:flex">
