@@ -85,7 +85,7 @@ useEffect(() => {
       >
         <div  className="flex flex-col inset-x-0 inset-y-0 bg-gradient-to-tl bg-no-repeat from-[#8C45FF] via-transparent to-black">
           <motion.section variants={container} onMouseMove={handleMouseMove} style={{ x: mouseX, y: mouseY }} className="flex justify-around">
-            <motion.div variants={container}  className="relative flex flex-col gap-5 w-full md:w-[50%] h-[100vh] justify-center px-5">
+            <motion.div variants={container}  className="relative flex flex-col gap-5 w-full md:w-[50%] h-[50vh] md:h-[80vh] justify-center px-5">
               <motion.div variants={container} className="flex rounded-full border-[0.001em] border-solid border-gray-500 md:w-max px-3 py-2 items-center justify-center gap-2 w-full">
                 <motion.p variants={item} className="rounded-3xl bg-[#9855FF] font-semibold px-2 text-black">
                   New
@@ -120,9 +120,9 @@ useEffect(() => {
             </section>
           </motion.section>
 
-          <div className="flex w-full p-5 items-center gap-5">
+          <div className="flex flex-col w-full p-5 items-center gap-0 md:flex md:flex-row md:gap-5">
             <p className="text-white">Trusted by top innovative teams:</p>
-            <section className="flex items-center w-[10%] md:w-[80%]">
+            <section className="flex items-center w-[100%] gap-5 md:w-[80%]">
               <Carousel
                 className="w-full"
                 plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
@@ -133,7 +133,7 @@ useEffect(() => {
                   skipSnaps: false,
                 }}
               >
-                <CarouselContent className="w-[20%]">
+                <CarouselContent className="w-[100%] md:w-[20%]">
                   <CarouselItem className="flex items-center gap-3 text-2xl">
                     <IoLogoAndroid />
                     <h5>Android</h5>

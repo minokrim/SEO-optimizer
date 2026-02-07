@@ -2,7 +2,7 @@ import { motion, Variants } from "motion/react";
 
   const floatingVariant:Variants = {
   animate: {
-    y: [20, -30, 90],
+    y: [5, -5, 30],
     rotate: [0, 5, -5, 0],
     transition: {
       duration: 6,
