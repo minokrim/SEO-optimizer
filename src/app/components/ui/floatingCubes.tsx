@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, Variants } from "motion/react";
 
   const floatingVariant:Variants = {
