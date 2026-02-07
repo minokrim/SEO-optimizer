@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { PrimaryCTA } from "./ui/primaryCta"; 
 export default function Nav(){
     return <div className="flex items-center justify-center p-5 bg-black text-white">
-        <main className="flex md:gap-15 items-center border-1 justify-between w-[90vw] md:w-max md:border-[0.001em] border-solid border-gray-100 p-3 rounded-2xl cursor-pointer">
+        <main className="flex md:gap-15 items-center border justify-between w-[80vw] md:w-max md:border-[0.001em] border-solid border-gray-100 p-3 rounded-2xl cursor-pointer">
         <Image src="/logo.png" width={30} height={30} alt="website logo" className="block"/>
 
         <section className="hidden md:flex gap-5 items-center justify-center">
