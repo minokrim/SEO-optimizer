@@ -22,9 +22,16 @@ export default function Nav(){
             <h5>Blog</h5>
 
             <h5 className="whitespace-nowrap">Change-Log</h5>
+<<<<<<< HEAD
                     <PrimaryCTA>Join Waitlist</PrimaryCTA>
         </section>
 
+=======
+        </section>
+
+        <h4 className="bg-[#8C45FF]/40 w-[100%] whitespace-nowrap text-center py-1 px-5 text-sm md:px-3 md:py-2 rounded-lg [box-shadow:inset_0_0_5px_rgba(255,255,255)] backdrop-blur-2xl">Join Waitlist</h4>
+
+>>>>>>> da9f656787d9b78ef85dfc794ecfe22d94ec90d8
         <section className="md:hidden">
             <RxHamburgerMenu className="flex text-4xl md:hidden "/>
         </section>
