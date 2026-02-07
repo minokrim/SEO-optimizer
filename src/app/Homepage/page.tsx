@@ -1,9 +1,8 @@
 "use client";
-
+import { useState,useEffect } from "react";
 import Image from "next/image";
 import { IoLogoAndroid } from "react-icons/io";
 import { IoLogoApple } from "react-icons/io";
-import { IoLogoClosedCaptioning } from "react-icons/io";
 import { IoLogoBitcoin } from "react-icons/io";
 import { IoLogoDribbble } from "react-icons/io";
 import { IoLogoHackernews } from "react-icons/io";
@@ -20,13 +19,14 @@ import { features } from "@/types";
 import ft from "@/app/Homepage/features.json";
 import Footer from "../components/footer";
 import Nav from "../components/nav";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/app/components/ui/carousel";
+import FloatingCube from "../components/ui/floatingCubes";
+import UseMouseParralax from "../components/ui/mouseParralax";
+import { SkeletonCard } from "../components/ui/skeletonCard";
+import { PrimaryCTA } from "../components/ui/primaryCta";
+import { DashboardCard } from "../components/ui/dashboardCard"; 
+import { motion, Variant, Variants } from "motion/react";
+import {Carousel,CarouselContent,CarouselItem,} from "@/app/components/ui/carousel";
+
 export default function HomePage() {
   const iconsMap: Record<string, React.ElementType> = {
     FaChartLine: FaChartLine,
@@ -36,6 +36,40 @@ export default function HomePage() {
     HiDocumentDuplicate: HiDocumentDuplicate,
     HiCursorClick: HiCursorClick,
   };
+
+  const { mouseX, mouseY, handleMouseMove } = UseMouseParralax(4);
+
+const container:Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.4,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const item:Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  const timer = setTimeout(() => setLoading(false), 1200);
+  return () => clearTimeout(timer);
+}, []);
+
+
+
   return (
     <div className="h-full bg-black text-white pb-5 flex flex-col items-center justify-center">
       <Nav/>
@@ -49,48 +83,46 @@ export default function HomePage() {
         }}
         className="rounded-b-xl"
       >
-        <div className="flex flex-col inset-x-0 inset-y-0 bg-gradient-to-tl bg-no-repeat from-[#8C45FF] via-transparent to-black">
-          <section className="flex justify-around">
-            <section className="relative flex flex-col gap-5 w-full md:w-[50%] h-[100vh] justify-center px-5">
-              <div className="flex rounded-full border-[0.001em] border-solid border-gray-500 md:w-max px-3 py-2 items-center justify-center gap-2 w-full">
-                <p className="rounded-3xl bg-[#9855FF] font-semibold px-2 text-black">
+        <div  className="flex flex-col inset-x-0 inset-y-0 bg-gradient-to-tl bg-no-repeat from-[#8C45FF] via-transparent to-black">
+          <motion.section variants={container} onMouseMove={handleMouseMove} style={{ x: mouseX, y: mouseY }} className="flex justify-around">
+            <motion.div variants={container}  className="relative flex flex-col gap-5 w-full md:w-[50%] h-[50vh] md:h-[80vh] justify-center px-5">
+              <motion.div variants={container} className="flex rounded-full border-[0.001em] border-solid border-gray-500 md:w-max px-3 py-2 items-center justify-center gap-2 w-full">
+                <motion.p variants={item} className="rounded-3xl bg-[#9855FF] font-semibold px-2 text-black">
                   New
-                </p>
-                <h5 className="text-[#9855FF] font-medium text-sm md:text-xl">
+                </motion.p>
+                <motion.h5 variants={item} className="text-[#9855FF] font-medium text-sm md:text-xl">
                   Latest integration just arrived
-                </h5>
-              </div>
+                </motion.h5>
+              </motion.div>
 
-              <h1 className="text-transparent bg-clip-text bg-gradient-to-br from-black/10 via-white to-white text-4xl font-semibold md:text-8xl w-full ">
+              <motion.h1 variants={item} className="text-transparent bg-clip-text bg-gradient-to-br from-black/10 via-white to-white text-4xl font-semibold md:text-8xl w-full ">
                 Elevate your SEO efforts.
-              </h1>
+              </motion.h1>
 
-              <h4 className="w-full text-md md:text-2xl font-sans text-white">
+              <motion.h4 variants={item} className="w-full text-md md:text-2xl font-sans text-white">
                 Elevate your site's visibility effortlessly with AI, where smart
                 technology meets user-friendly SEO tools.
-              </h4>
+              </motion.h4>
+            </motion.div>
 
-              {/* <div className="flex flex-col md:flex-row justify-between w-full md:w-[70%] px-1 py-0.5 rounded-2xl border-[0.001em] border-none md:border-solid border-gray-500 font-sans items-center mt-5 gap-2">
-                <input type="text" name="emailInput" placeholder="Your email" className="border-1 border-solid border-gray-500 md:border-none w-full p-2 rounded-xl"/>
-                <p className="bg-white p-3 rounded-xl text-black md:w-[40%] items-center justify-center w-full">
-                  Join Waitlist
-                </p>
-              </div> */}
+
+            <section className="relative z-5 hidden mt-10 w-1/3 items-center justify-center align-middle md:flex">
+              <FloatingCube className="absolute top-10 right-50 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-30 right-20 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-70 right-10 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-95 right-50 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-30 right-80 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-70 right-80 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-50 right-50 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-110 right-80 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-110 right-10 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
+              <FloatingCube className="absolute top-140 right-45 w-26 h-26 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl"/>
             </section>
+          </motion.section>
 
-            <section className="relative z-5 hidden md:flex">
-              <Image
-                src="/purple-comp.png"
-                height={700}
-                width={700}
-                alt="animated composition"
-              />
-            </section>
-          </section>
-
-          <div className="flex w-full p-5 items-center gap-5">
+          <div className="flex flex-col w-full p-5 items-center gap-0 md:flex md:flex-row md:gap-5">
             <p className="text-white">Trusted by top innovative teams:</p>
-            <section className="flex items-center w-[10%] md:w-[80%]">
+            <section className="flex items-center w-[100%] gap-5 md:w-[80%]">
               <Carousel
                 className="w-full"
                 plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
@@ -101,7 +133,7 @@ export default function HomePage() {
                   skipSnaps: false,
                 }}
               >
-                <CarouselContent className="w-[20%]">
+                <CarouselContent className="w-[100%] md:w-[20%]">
                   <CarouselItem className="flex items-center gap-3 text-2xl">
                     <IoLogoAndroid />
                     <h5>Android</h5>
@@ -145,7 +177,11 @@ export default function HomePage() {
           Harness the power of AI, making search engine optimization intuitive
           and effective for all skill levels.
         </h3>
-        <Image src="/App.png" alt="dashboard image" height={200} width={2000} className="mt-10"/>
+
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 5, y: 0 }} transition={{ duration: 2, ease: "easeOut" }}>
+            {loading ? <SkeletonCard /> : <Image src="/App.png" alt="dashboard image" height={200} width={2000} className="mt-10"/>}
+            
+        </motion.div>
 
         <div className="w-full flex flex-wrap gap-10 items-center justify-around mt-10 md:mt-0">
           {ft.map((Feature: features) => {
@@ -166,7 +202,7 @@ export default function HomePage() {
       </section>
 
 
-      <section className=" bg-black w-full flex items-center justify-center mt-25 md:mt-50">
+      {/* <section className=" bg-black w-full flex items-center justify-center mt-25 md:mt-50">
         <div className="w-[90%] gap-5 border-black shadow-[0_0_1px_rgba(255,255,255,0.5)] border-[0.0001em] text-center flex flex-col md:flex-row items-start md:items-center justify-center px-5 py-20 md:p-25 bg-gradient-to-b bg-no-repeat from-[#8C45FF]/49 via-transparent to-black rounded-2xl">
           <Image src="/avatar.png" height={200} width={150} alt="image of customer"/>
         <div className="w-full md:w-[40%] flex flex-col justify-center text-left">
@@ -177,7 +213,9 @@ export default function HomePage() {
           </div>
         </div>
         </div>
-      </section>
+      </section> */}
+
+      <DashboardCard title="This product has completely transformed how I manage my projects and deadlines" name="Talia Taylor" position="Digital Marketing Director @ Quantum" image="/avatar.png"/>
 
 
       <section className="flex items-center justify-center mt-20 w-full">
@@ -185,8 +223,8 @@ export default function HomePage() {
           <div style={{backgroundImage:"url('/stars.png')",backgroundSize: "cover", backgroundPosition: "center"}} className="items-center justify-center flex flex-col w-full border-black shadow-[0_0_1px_rgba(255,255,255,0.5)] border-[0.0001em] px-5 py-20 md:p-30">
         <Image src="/icon.png" height={100} width={100} alt="icon"/>
         <h3 className="text-4xl text-white font-semibold text-wrap md:w-[40%] text-center mt-5">The magic of AI at your fingertips.</h3>
-        <p className="text-center font-normal w-full md:w-[30%] mt-5 text-xl">Achieve clear, impactful results without the complexity.</p>
-        <button className="mt-5 bg-[#8C45FF]/49 px-5 py-2 rounded-sm [box-shadow:inset_0_0_5px_rgba(255,255,255)] backdrop-blur-2xl">Try for free</button>
+        <p className="text-center font-normal w-full md:w-[30%] mt-5  mb-2 text-xl">Achieve clear, impactful results without the complexity.</p>
+        <PrimaryCTA>Try for free</PrimaryCTA>
         </div>
         </div>
       </section>
