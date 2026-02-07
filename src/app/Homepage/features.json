@@ -1,0 +1,39 @@
+[
+    {
+        "id":1,
+        "feature":"Visual reports",
+        "icon":"FaChartLine",
+        "desc":"Visual insights into your site’s performance."
+    },
+    {
+        "id":2,
+        "feature":"SEO goal setting",
+        "icon":"GoGoal",
+        "desc":"Helps you set and achieve SEO goals with guided assistance."
+    },
+    {
+        "id":3,
+        "feature":"One-click optimization",
+        "icon":"HiCursorClick",
+        "desc":"Perform complex SEO audits and optimizations with a single click."
+    },
+    {
+        "id":4,
+        "feature":"Smart Keyword Generator",
+        "icon":"BsStars",
+        "desc":"Automatic suggestions and the best keywords to target."
+    },
+    {
+        "id":5,
+        "feature":"Automated alerts",
+        "icon":"HiMiniBellAlert",
+        "desc":"Automatic notifications about your SEO health, including quick fixes."
+    },
+    {
+        "id":6,
+        "feature":"Competitor reports",
+        "icon":"iconHiDocumentDuplicate",
+        "desc":"Provides insights into competitors’ keyword strategies and ranking."
+    }
+
+]
